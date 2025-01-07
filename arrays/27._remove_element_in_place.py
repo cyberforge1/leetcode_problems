@@ -57,12 +57,12 @@ class Solution(object):
         :rtype: int
         """
         n = len(nums)
-        if n == 0:  # Handle empty array
+        if n == 0:
             return 0
 
         write = n - 1
 
-        for read in range(n - 1, -1, -1):  # Adjust read range
+        for read in range(n - 1, -1, -1):
             if nums[read] == val:
                 nums[read], nums[write] = nums[write], nums[read]
                 write -= 1
