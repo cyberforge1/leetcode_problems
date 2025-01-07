@@ -32,26 +32,13 @@ class Solution(object):
         n = len(nums)
         p1 = n - 1
         p2 = n - 2
-        
+
         for p2 in range(n-1, -1, -1):
-            
-            print(p2)
-            
             if nums[p2] % 2 != 0:
-                
-                print('This number is odd', nums[p2])
-                
                 temp = nums[p1]
-                
                 nums[p1] = nums[p2]
-                
                 nums[p2] = temp
-                
                 p1 -= 1
-                
-            print('This number is even', nums[p1])
-        
-        print(nums)
         return nums    
             
 
