@@ -48,7 +48,6 @@ class Solution(object):
             else:
                 digits[i] += 1
                 return digits
-        # If all digits are 9, we need to add a new leading 1
         return [1] + digits
 
         
