@@ -39,7 +39,6 @@ class Solution(object):
         result = []
         diagonals = {}
 
-        # Step 1: Group elements by their diagonal index (i + j)
         for i in range(m):
             for j in range(n):
                 diagonal_index = i + j
@@ -47,13 +46,10 @@ class Solution(object):
                     diagonals[diagonal_index] = []
                 diagonals[diagonal_index].append(mat[i][j])
 
-        # Step 2: Traverse each diagonal based on its index
         for k in range(len(diagonals)):
             if k % 2 == 0:
-                # Even index: Reverse the diagonal for "up-right" order
                 result.extend(reversed(diagonals[k]))
             else:
-                # Odd index: Keep the diagonal as-is for "down-left" order
                 result.extend(diagonals[k])
 
         return result
