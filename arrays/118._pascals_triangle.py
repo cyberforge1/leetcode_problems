@@ -29,12 +29,17 @@ class Solution(object):
         :type numRows: int
         :rtype: List[List[int]]
         """
+        result = []
         
+        for i in range(numRows):
+            row = [1] * (i + 1)
+            
+            for j in range(1, i):
+                row[j] = result[i - 1][j - 1] + result[i - 1][j]
+            
+            result.append(row)
         
-        
-        
-        
-        
+        return result  
         
 # Input: numRows = 5
 # Input: numRows = 1
@@ -43,5 +48,3 @@ class Solution(object):
 print(Solution().generate(numRows = 5))
 
 # python arrays/118._pascals_triangle.py
-
-
