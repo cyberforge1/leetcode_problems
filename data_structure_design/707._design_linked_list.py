@@ -42,99 +42,58 @@
         
         
 class Node:
-    """
-    Node class represents a single node in the linked list.
-    Each node contains a value and a pointer to the next node.
-    """
     def __init__(self, val=0, next=None):
-        self.val = val  # The value stored in the node
-        self.next = next  # Pointer to the next node
-
+        self.val = val
+        self.next = next
 
 class MyLinkedList:
-    """
-    MyLinkedList is a singly linked list implementation.
-    It provides methods to:
-    - Get the value at a given index.
-    - Add nodes at the head, tail, or a specific index.
-    - Delete a node at a specific index.
-    """
     def __init__(self):
-        """
-        Initializes the linked list with an empty head and size 0.
-        """
-        self.head = None  # Head points to the first node of the list
-        self.size = 0  # Keeps track of the size of the list
+        self.head = None
+        self.size = 0
 
-    def get(self, index: int) -> int:
-        """
-        Retrieves the value of the node at the given index.
-        Returns -1 if the index is invalid.
-        """
-        if index < 0 or index >= self.size:  # Check if index is out of bounds
-            return -1  # Return -1 for invalid index
+    def get(self, index):
+        if index <0 or index >= self.size: return -1
+        node = self.head
+        for _ in range(index):
+            node = node.next
+        return node.val
 
-        current = self.head  # Start from the head of the list
-        for _ in range(index):  # Traverse the list to the given index
-            current = current.next
-        return current.val  # Return the value of the node at the index
+    def addAtHead(self, val):
+        self.head = Node(val, self.head)
+        self.size +=1
 
-    def addAtHead(self, val: int) -> None:
-        """
-        Adds a node with the given value at the head of the list.
-        """
-        new_node = Node(val, self.head)  # Create a new node pointing to the current head
-        self.head = new_node  # Update the head to the new node
-        self.size += 1  # Increment the size of the list
-
-    def addAtTail(self, val: int) -> None:
-        """
-        Appends a node with the given value at the tail of the list.
-        """
-        new_node = Node(val)  # Create a new node
-        if not self.head:  # If the list is empty
-            self.head = new_node  # Set the new node as the head
+    def addAtTail(self, val):
+        new = Node(val)
+        if not self.head:
+            self.head = new
         else:
-            current = self.head  # Start from the head
-            while current.next:  # Traverse to the last node
-                current = current.next
-            current.next = new_node  # Update the last node's next to the new node
-        self.size += 1  # Increment the size of the list
+            node = self.head
+            while node.next:
+                node = node.next
+            node.next = new
+        self.size +=1
 
-    def addAtIndex(self, index: int, val: int) -> None:
-        """
-        Adds a node with the given value before the node at the specified index.
-        If index equals the size of the list, the new node is appended at the end.
-        If index is greater than the size, the node is not inserted.
-        """
-        if index < 0 or index > self.size:  # Check if index is out of bounds
+    def addAtIndex(self, index, val):
+        if index <0 or index > self.size: return
+        if index ==0:
+            self.addAtHead(val)
             return
+        node = self.head
+        for _ in range(index-1):
+            node = node.next
+        node.next = Node(val, node.next)
+        self.size +=1
 
-        if index == 0:  # If adding at the head
-            self.addAtHead(val)  # Reuse addAtHead
+    def deleteAtIndex(self, index):
+        if index <0 or index >= self.size: return
+        if index ==0:
+            self.head = self.head.next
         else:
-            current = self.head  # Start from the head
-            for _ in range(index - 1):  # Traverse to the node before the target index
-                current = current.next
-            new_node = Node(val, current.next)  # Create a new node pointing to the target node
-            current.next = new_node  # Update the previous node's next to the new node
-            self.size += 1  # Increment the size of the list
-
-    def deleteAtIndex(self, index: int) -> None:
-        """
-        Deletes the node at the specified index, if the index is valid.
-        """
-        if index < 0 or index >= self.size:  # Check if index is out of bounds
-            return
-
-        if index == 0:  # If deleting the head
-            self.head = self.head.next  # Update the head to the next node
-        else:
-            current = self.head  # Start from the head
-            for _ in range(index - 1):  # Traverse to the node before the target index
-                current = current.next
-            current.next = current.next.next  # Skip the target node by updating the next pointer
-        self.size -= 1  # Decrement the size of the list
+            node = self.head
+            for _ in range(index-1):
+                node = node.next
+            node.next = node.next.next
+        self.size -=1
 
 
 
