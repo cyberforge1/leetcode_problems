@@ -83,19 +83,15 @@
 
 class Solution:
     def twoSum(self, nums, target):
-        # Create a dictionary to store numbers and their indices
+        
         num_map = {}
         
-        # Iterate through the list
         for i, num in enumerate(nums):
-            # Calculate the complement
             complement = target - num
             
-            # Check if the complement exists in the dictionary
             if complement in num_map:
                 return [num_map[complement], i]
             
-            # Otherwise, store the current number and its index
             num_map[num] = i
 
 
