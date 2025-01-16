@@ -29,8 +29,15 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: List[int]
         """
+        set_1 = set(nums1)
+        set_2 = set(nums2)
+        L = []
         
-        
+        for num in set_1:
+            if num in set_2:
+                L.append(num)
+                
+        return L
         
         
 # Input: nums1 = [1,2,2,1], nums2 = [2,2]
