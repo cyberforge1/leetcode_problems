@@ -32,10 +32,24 @@ class Solution(object):
         :type k: int
         :rtype: bool
         """
+        index_map = {}
+        
+        for i in range(len(nums)):
+            if nums[i] in index_map:
+                if i - index_map[nums[i]] <= k:
+                    return True
+            
+            index_map[nums[i]] = i
+        
+        return False
         
         
         
-
+    # for key, value in d.items():
+    #     if value == target_value:
+    #         return key
+    # return None  # Return None if the value is not found
+            
 # Input: nums = [1,2,3,1], k = 3
 # Output: true
 
