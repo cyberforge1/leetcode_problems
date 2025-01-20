@@ -32,23 +32,19 @@ class Solution:
         :type k: int
         :rtype: List[int]
         """
-        # Step 1: Count frequencies using a hash map
         freq_map = {}
         for num in nums:
             freq_map[num] = freq_map.get(num, 0) + 1
         
-        # Step 2: Create buckets for grouping elements by frequency
-        # The size of the bucket array is len(nums) + 1 because max frequency cannot exceed len(nums)
         bucket = [[] for _ in range(len(nums) + 1)]
         for num, freq in freq_map.items():
             bucket[freq].append(num)
         
-        # Step 3: Collect top k frequent elements
         result = []
-        for freq in range(len(bucket) - 1, 0, -1):  # Start from the highest frequency
+        for freq in range(len(bucket) - 1, 0, -1):
             for num in bucket[freq]:
                 result.append(num)
-                if len(result) == k:  # Stop when we've collected k elements
+                if len(result) == k:
                     return result
         
 
