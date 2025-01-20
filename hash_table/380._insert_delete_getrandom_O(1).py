@@ -44,8 +44,8 @@ class RandomizedSet:
         """
         Initialize the RandomizedSet object.
         """
-        self.num_map = {}  # Hash map to store the value and its index in the list
-        self.num_list = []  # List to store values for O(1) random access
+        self.num_map = {}
+        self.num_list = []
 
     def insert(self, val):
         """
@@ -54,9 +54,9 @@ class RandomizedSet:
         :rtype: bool
         """
         if val in self.num_map:
-            return False  # Value already exists in the set
-        self.num_list.append(val)  # Add the value to the list
-        self.num_map[val] = len(self.num_list) - 1  # Store the index of the value in the list
+            return False
+        self.num_list.append(val)
+        self.num_map[val] = len(self.num_list) - 1
         return True
 
     def remove(self, val):
@@ -66,14 +66,11 @@ class RandomizedSet:
         :rtype: bool
         """
         if val not in self.num_map:
-            return False  # Value does not exist in the set
-        # Get the index of the value to remove
+            return False
         index = self.num_map[val]
-        # Swap the last element with the element to remove (to maintain O(1) removal)
         last_val = self.num_list[-1]
         self.num_list[index] = last_val
         self.num_map[last_val] = index
-        # Remove the last element from the list and hash map
         self.num_list.pop()
         del self.num_map[val]
         return True
@@ -83,7 +80,7 @@ class RandomizedSet:
         Returns a random element from the set.
         :rtype: int
         """
-        return random.choice(self.num_list)  # Randomly select an element from the list
+        return random.choice(self.num_list)
 
 
 
