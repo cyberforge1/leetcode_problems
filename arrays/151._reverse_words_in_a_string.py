@@ -36,20 +36,54 @@
 
 # Follow-up: If the string data type is mutable in your language, can you solve it in-place with O(1) extra space?
 
+# PREVIOUS ATTEMPT
+
+# class Solution(object):
+#     def reverseWords(self, s):
+#         """
+#         :type s: str
+#         :rtype: str
+#         """
+#         str_ans = ''
+#         L = s.split()
+#         L.reverse()
+#         for word in L:
+#             str_ans += word + ' '
+#         return str_ans[0:-1]
+        
+        
+        
+        
+        
+        
+        
+        
+        
 class Solution(object):
     def reverseWords(self, s):
         """
         :type s: str
         :rtype: str
         """
-        str_ans = ''
-        L = s.split()
-        L.reverse()
-        for word in L:
-            str_ans += word + ' '
-        return str_ans[0:-1]
+        if not s:
+            return ''
+        
+        my_arr = s.split()
+        i = 0
+        j = len(my_arr) - 1
+
+        while i < j:
+            my_arr[i], my_arr[j] = my_arr[j], my_arr[i]
+            i += 1
+            j -= 1
+        result = ' '.join(my_arr)
+        return result
         
 
+        
+        
+        
+        
         
         
 # Input: s = "the sky is blue"
