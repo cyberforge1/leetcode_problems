@@ -29,17 +29,14 @@
 # str1 and str2 consist of English uppercase letters.
 
 class Solution:
-    def gcdOfStrings(self, str1, str2):
-        # Compute the GCD of two numbers (lengths of the strings)
+    def gcdOfStrings(str1, str2):
         a, b = len(str1), len(str2)
         while b:
             a, b = b, a % b
         
-        # Check if str1 and str2 share the same base substring
         if str1 + str2 != str2 + str1:
             return ""
         
-        # The common divisor string is the prefix of length a
         return str1[:a]
 
     
