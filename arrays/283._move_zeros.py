@@ -22,6 +22,27 @@
 
 # Follow up: Could you minimize the total number of operations done?
 
+# PREVIOUS SOLUTION
+
+# class Solution(object):
+#     def moveZeroes(self, nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: None Do not return anything, modify nums in-place instead.
+#         """
+        
+#         n = len(nums)
+#         writePointer = 0
+
+#         for readPointer in range(n):
+#             if nums[readPointer] != 0:
+#                 nums[writePointer] = nums[readPointer]
+#                 writePointer += 1
+
+#         for i in range(writePointer, n):
+#             nums[i] = 0
+
+#         return nums
 
 class Solution(object):
     def moveZeroes(self, nums):
@@ -30,18 +51,23 @@ class Solution(object):
         :rtype: None Do not return anything, modify nums in-place instead.
         """
         
+        
+        w = 0
+        r = 0
         n = len(nums)
-        writePointer = 0
-
-        for readPointer in range(n):
-            if nums[readPointer] != 0:
-                nums[writePointer] = nums[readPointer]
-                writePointer += 1
-
-        for i in range(writePointer, n):
+        if n == 1:
+            return nums
+        while r < n:
+            if nums[r] != 0:
+                nums[w] = nums[r]
+                w += 1
+            r += 1
+        for i in range(w, n):
             nums[i] = 0
-
         return nums
+
+
+
 
         
         
