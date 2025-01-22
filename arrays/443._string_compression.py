@@ -39,7 +39,7 @@
 # 1 <= chars.length <= 2000
 # chars[i] is a lowercase English letter, uppercase English letter, digit, or symbol.
 
-
+ 
 class Solution(object):
     def compress(self, chars):
         """
