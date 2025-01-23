@@ -25,19 +25,38 @@
 # 1 <= k <= n <= 105
 # -104 <= nums[i] <= 104
 
+# class Solution:
+#     def findMaxAverage(self, nums, k):
+#         current_window_sum = sum(nums[:k])
+#         max_window_sum = current_window_sum
+        
+#         for i in range(k, len(nums)):
+#             current_window_sum += nums[i] - nums[i - k]
+            
+#             max_window_sum = max(max_window_sum, current_window_sum)
+        
+#         return max_window_sum / float(k)
+    
+    
+    
+    
+    
 class Solution:
     def findMaxAverage(self, nums, k):
-        current_window_sum = sum(nums[:k])
-        max_window_sum = current_window_sum
+        n = len(nums)
+        current_window = sum(nums[:k])
+        max_sum = current_window
         
         for i in range(k, len(nums)):
-            current_window_sum += nums[i] - nums[i - k]
-            
-            max_window_sum = max(max_window_sum, current_window_sum)
+            current_window += nums[i] - nums[i - k]
+            if current_window > max_sum:
+                max_sum = current_window
         
-        return max_window_sum / float(k)
-    
-    
+        return max_sum / float(k)
+        
+        
+        
+        
 
 # Input: nums = [1,12,-5,-6,50,3], k = 4
 # Output: 12.75000
