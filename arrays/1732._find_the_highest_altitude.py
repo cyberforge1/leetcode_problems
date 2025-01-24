@@ -28,23 +28,41 @@
 # -100 <= gain[i] <= 100
 
 
+# FIRST SOLUTION
 
+# class Solution(object):
+#     def largestAltitude(self, gain):
+#         """
+#         :type gain: List[int]
+#         :rtype: int
+#         """
+#         max_altitude = 0
+#         current_altitude = 0
+
+#         for g in gain:
+#             current_altitude += g
+#             max_altitude = max(max_altitude, current_altitude)
+
+#         return max_altitude
+        
+        
+        
+        
+        
 class Solution(object):
     def largestAltitude(self, gain):
         """
         :type gain: List[int]
         :rtype: int
         """
-        max_altitude = 0
-        current_altitude = 0
-
-        for g in gain:
-            current_altitude += g
-            max_altitude = max(max_altitude, current_altitude)
-
-        return max_altitude
-        
-        
+        current_sum = 0
+        max_alt = 0
+        n = len(gain)
+        for i in range(n):
+            current_sum += gain[i]
+            if current_sum > max_alt:
+                max_alt = current_sum
+        return max_alt        
         
         
 
@@ -55,6 +73,6 @@ class Solution(object):
 # Output: 0
         
         
-print(Solution().largestAltitude(gain = [-5,1,5,0,-7]))
+print(Solution().largestAltitude(gain = [-4,-3,-2,-1,4,3,2]))
 
 # python arrays/1732._find_the_highest_altitude.py
