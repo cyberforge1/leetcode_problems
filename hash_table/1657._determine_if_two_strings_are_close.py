@@ -44,6 +44,31 @@ class Solution(object):
         :type word2: str
         :rtype: bool
         """
+        if len(word1) != len(word2):
+            return False
+        
+        if set(word1) != set(word2):
+            return False
+        
+        freq1 = {}
+        for char in word1:
+            if char not in freq1:
+                freq1[char] = 0
+            freq1[char] += 1
+        
+        freq2 = {}
+        for char in word2:
+            if char not in freq2:
+                freq2[char] = 0
+            freq2[char] += 1
+        
+        if sorted(freq1.values()) != sorted(freq2.values()):
+            return False
+        
+        return True
+
+                
+            
         
         
 
@@ -56,6 +81,6 @@ class Solution(object):
 # Input: word1 = "cabbba", word2 = "abbccc"
 # Output: true
         
-print(Solution().closeStrings(word1 = "abc", word2 = "bca"))
+print(Solution().closeStrings(word1 = "cabbba", word2 = "abbccc"))
 
 # python hash_table/1657._determine_if_two_strings_are_close.py
