@@ -41,36 +41,70 @@
 # -1000 <= nums[i] <= 1000
 
 
+# FIRST ATTEMPT
+
+# class Solution(object):
+#     def pivotIndex(self, nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: int
+#         """
+#         if len(nums) == 0:
+#             return -1
+        
+#         total_sum = sum(nums)
+#         l_sum = 0
+        
+#         for i in range(len(nums)):
+            
+#             r_sum = total_sum - l_sum - nums[i]
+            
+#             if l_sum == r_sum:
+#                 return i
+            
+#             l_sum += nums[i]
+            
+#         return -1
+        
+        
+        
+        
 class Solution(object):
     def pivotIndex(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
-        if len(nums) == 0:
-            return -1
-        
-        total_sum = sum(nums)
-        l_sum = 0
-        
-        for i in range(len(nums)):
+        left_sum = 0
+        n = len(nums)
+        total_sum = 0
+        for num in nums:
+            total_sum += num
             
-            r_sum = total_sum - l_sum - nums[i]
             
-            if l_sum == r_sum:
+        for i in range(n):
+
+            right_sum = total_sum - left_sum - nums[i]
+            
+            if left_sum == right_sum:
                 return i
-            
-            l_sum += nums[i]
+
+            left_sum += nums[i]
+
             
         return -1
         
         
-        
+
+
 # Input: nums = [1,7,3,6,5,6]
+# Output: 3
+
 # Input: nums = [1,2,3]
+# Output: -1
+
 # Input: nums = [2,1,-1]
-
-
+# Output: 0
         
 print(Solution().pivotIndex([1,7,3,6,5,6]))
 
