@@ -43,6 +43,7 @@
 # 1 <= tokens.length <= 104
 # tokens[i] is either an operator: "+", "-", "*", or "/", or an integer in the range [-200, 200].
 
+import operator
 
 class Solution(object):
     def evalRPN(self, tokens):
@@ -50,8 +51,25 @@ class Solution(object):
         :type tokens: List[str]
         :rtype: int
         """
+        number_stack = []
+        operators = {
+            '+': operator.add,
+            '-': operator.sub,
+            '*': operator.mul,
+            '/': lambda a, b: a // b if a * b > 0 else -(abs(a) // abs(b))
+        }
         
+        for token in tokens:
+            if token not in operators:
+                number_stack.append(int(token))
+            else:
+                final_token = number_stack.pop()
+                penultimate_token = number_stack.pop()
+                local_operation = operators[token](penultimate_token, final_token)
+                number_stack.append(local_operation)
         
+        return number_stack[0]
+
 
 
 # Input: tokens = ["2","1","+","3","*"]
