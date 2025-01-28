@@ -45,26 +45,62 @@
 
 
 
+# FIRST SOLUTION
+
+# # class Solution:
+# #     def isValid(self, s):
+#         """
+#         :type s: str
+#         :rtype: bool
+#         """
+#         # stack = []
+#         # complements = {'(': ')', '{': '}', '[': ']'}
+        
+#         # for char in s:
+#         #     if char in complements:
+#         #         stack.append(char)
+#         #     else:
+#         #         if not stack:
+#         #             return False
+#         #         stack_top = stack.pop()
+#         #         if complements[stack_top] != char:
+#         #             return False
+
+#         # return not stack  
+        
+        
+        
+        
+        
 class Solution:
     def isValid(self, s):
         """
         :type s: str
         :rtype: bool
         """
-        stack = []
-        complements = {'(': ')', '{': '}', '[': ']'}
+        
+        
+        my_dict = {'(': ')', '{': '}', '[': ']'}
+        my_stack = []
         
         for char in s:
-            if char in complements:
-                stack.append(char)
+            if char in my_dict:
+                my_stack.append(char)
+            
             else:
-                if not stack:
+                if not my_stack:
                     return False
-                stack_top = stack.pop()
-                if complements[stack_top] != char:
-                    return False
-
-        return not stack  
+                
+                stack_top = my_stack.pop()
+                
+                if my_dict[stack_top] != char:
+                    return False    
+            
+        return not my_stack
+        
+        
+        
+        
 
 
 
@@ -86,3 +122,4 @@ class Solution:
 print(Solution().isValid(s = "()"))
 
 # python stack_and_queue/20._valid_parentheses.py
+
