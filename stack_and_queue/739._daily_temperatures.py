@@ -33,6 +33,23 @@ class Solution(object):
         :type temperatures: List[int]
         :rtype: List[int]
         """
+        stack = []
+        n = len(temperatures)
+        answer = [0] * n
+        
+        for i in range(n):
+            temp = temperatures[i]
+            
+
+            while stack and temperatures[stack[-1]] < temp:
+                prev_index = stack.pop()
+                answer[prev_index] = i - prev_index
+            
+            stack.append(i)
+        
+        return answer
+        
+        
         
         
         
