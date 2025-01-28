@@ -36,43 +36,87 @@
 # grid[i][j] is '0' or '1'.
 
 
-from collections import deque
+# # BFS Solution
+
+# from collections import deque
 
 
+# class Solution(object):
+#     def numIslands(self, grid):
+#         """
+#         Count the number of islands in a 2D grid using BFS with a visited set.
+#         :param grid: List[List[str]] - 2D grid where '1' represents land and '0' represents water
+#         :return: int - Number of islands
+#         """
+#         def bfs(start):
+#             queue = deque([start])
+#             visited.add(start)
+
+#             while queue:
+#                 r, c = queue.popleft()
+#                 # Check all 4 neighbors
+#                 for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+#                     nr, nc = r + dr, c + dc
+#                     if 0 <= nr < len(grid) and 0 <= nc < len(grid[0]) and grid[nr][nc] == '1' and (nr, nc) not in visited:
+#                         queue.append((nr, nc))
+#                         visited.add((nr, nc))
+
+#         if not grid:
+#             return 0
+
+#         visited = set()
+#         num_islands = 0
+
+#         # Traverse the entire grid
+#         for r in range(len(grid)):
+#             for c in range(len(grid[0])):
+#                 if grid[r][c] == '1' and (r, c) not in visited:
+#                     num_islands += 1  # New island found
+#                     bfs((r, c))       # Explore the entire island using BFS
+
+#         return num_islands
+    
+    
+    
+    
+    
+# DFS Solution
 class Solution(object):
-    def numIslands(self, grid):
-        """
-        Count the number of islands in a 2D grid using BFS with a visited set.
-        :param grid: List[List[str]] - 2D grid where '1' represents land and '0' represents water
-        :return: int - Number of islands
-        """
-        def bfs(start):
-            queue = deque([start])
-            visited.add(start)
 
-            while queue:
-                r, c = queue.popleft()
-                # Check all 4 neighbors
-                for dr, dc in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-                    nr, nc = r + dr, c + dc
-                    if 0 <= nr < len(grid) and 0 <= nc < len(grid[0]) and grid[nr][nc] == '1' and (nr, nc) not in visited:
-                        queue.append((nr, nc))
-                        visited.add((nr, nc))
+    def numIslands(grid):
+        """
+        :type grid: List[List[str]]
+        :rtype: int
+        """
+        def dfs(i, j):
+            # Boundary check and ensure the cell is land
+            if i < 0 or i >= len(grid) or j < 0 or j >= len(grid[0]) or grid[i][j] == '0':
+                return
+            # Mark the cell as visited
+            grid[i][j] = '0'
+            # Explore all four directions
+            dfs(i - 1, j)  # Up
+            dfs(i + 1, j)  # Down
+            dfs(i, j - 1)  # Left
+            dfs(i, j + 1)  # Right
 
-        if not grid:
+        if not grid or not grid[0]:
             return 0
 
-        visited = set()
         num_islands = 0
 
-        # Traverse the entire grid
-        for r in range(len(grid)):
-            for c in range(len(grid[0])):
-                if grid[r][c] == '1' and (r, c) not in visited:
-                    num_islands += 1  # New island found
-                    bfs((r, c))       # Explore the entire island using BFS
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == '1':  # Start a DFS for every new island
+                    num_islands += 1
+                    dfs(i, j)
 
         return num_islands
+
+
+
+
+
 
         
         
