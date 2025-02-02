@@ -30,17 +30,52 @@
 
 # 1 <= n <= 45
 
+# FIRST SOLUTION
 
-class Solution:
-    def __init__(self):
-        self.memo = {}
+# class Solution:
+#     def __init__(self):
+#         self.memo = {}
 
-    def climbStairs(self, n):
-        if n in self.memo:
-            return self.memo[n]
+#     def climbStairs(self, n):
+#         if n in self.memo:
+#             return self.memo[n]
+#         if n == 1:
+#             return 1
+#         if n == 2:
+#             return 2
+#         self.memo[n] = self.climbStairs(n - 1) + self.climbStairs(n - 2)
+#         return self.memo[n]
+
+
+
+### SECOND SOLUTION
+
+def climbStairs(n):
+    my_dict = {}
+
+    def helper(n):
+        if n in my_dict:
+            return my_dict[n]
         if n == 1:
             return 1
         if n == 2:
             return 2
-        self.memo[n] = self.climbStairs(n - 1) + self.climbStairs(n - 2)
-        return self.memo[n]
+        my_dict[n] = helper(n - 1) + helper(n - 2)
+        return my_dict[n]
+    
+    return helper(n)
+
+
+### RECURSIVE PATTERN
+
+# climbStairs(5)
+#  ├── climbStairs(4)
+#  │    ├── climbStairs(3)
+#  │    │    ├── climbStairs(2) → 2
+#  │    │    ├── climbStairs(1) → 1
+#  │    │    → returns (2+1) = 3
+#  │    ├── climbStairs(2) → 2 (memoized)
+#  │    → returns (3+2) = 5
+#  ├── climbStairs(3) → 3 (memoized)
+#  → returns (5+3) = 8
+
