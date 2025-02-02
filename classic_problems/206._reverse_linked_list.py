@@ -31,19 +31,63 @@
 
 # Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?
 
+
+### BUILDS A SEPARATE LINKED LIST (UN-ATTACHED)
+
+### ITERATIVE SOLUTION POINTS CURR.NEXT TO PREV FOR REVERSAL
+
+### PREV IS THE HEAD OF THE NEWLY BUILT LINKED LIST
+
+
+
+
+### ITERATIVE
+
+# class Solution(object):
+#     def reverseList(self, head):
+#         """
+#         :type head: Optional[ListNode]
+#         :rtype: Optional[ListNode]
+#         """
+#         prev = None
+#         curr = head
+        
+#         while curr:
+#             temp = curr.next
+#             curr.next = prev
+#             prev = curr
+#             curr = temp
+            
+#         return prev
+    
+    
+### RECURSIVE
+
+
 class Solution(object):
     def reverseList(self, head):
         """
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        prev = None
-        curr = head
+        if not head or not head.next:
+            return head
         
-        while curr:
+        curr = head
+        prev = None
+        
+        def helper(curr, prev):
+            
+            if not curr:
+                return prev
+            
             temp = curr.next
             curr.next = prev
-            prev = curr
-            curr = temp
             
-        return prev
+            return helper(curr = temp, prev = curr)
+            
+        return helper(curr, prev)
+            
+            
+            
+            
