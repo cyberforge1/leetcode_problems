@@ -28,7 +28,6 @@ def BFS(root, target):
             if cur == target:
                 return step
             
-            # Process all neighbors of the current node
             for neighbor in cur.neighbors:
                 queue.append(neighbor)
 
