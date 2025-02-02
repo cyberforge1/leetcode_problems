@@ -62,3 +62,27 @@ class Solution(object):
 
         # Return the new head node (second_node after the swap)
         return second_node
+
+### Swaps pairs from the end of the linked list moving backwards
+
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def swapPairs(self, head):
+        def swap_recursive(node):
+            if not node or not node.next:
+                return node
+            
+            first_node = node
+            second_node = node.next
+
+            first_node.next = swap_recursive(second_node.next)
+
+            second_node.next = first_node
+
+            return second_node
+
+        return swap_recursive(head)
