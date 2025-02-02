@@ -31,30 +31,19 @@
 
 # Follow up: A linked list can be reversed either iteratively or recursively. Could you implement both?
 
-
 class Solution(object):
     def reverseList(self, head):
         """
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        # def helper(curr, prev):
-        #     if not curr:
-        #         return prev
-            
-        #     temp = curr.next
-        #     curr.next = prev
-        #     return helper(temp, curr)
+        prev = None
+        curr = head
         
-        # return helper(head, None)
-
-
-class Solution(object):
-    def reverseList(self, head):
-        """
-        :type head: Optional[ListNode]
-        :rtype: Optional[ListNode]
-        """
-
-
-
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
+            
+        return prev
