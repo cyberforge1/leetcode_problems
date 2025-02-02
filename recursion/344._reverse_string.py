@@ -23,9 +23,30 @@
 # Constraints:
 
 # 1 <= s.length <= 105
+
 # s[i] is a printable ascii character.
 
 
+# ATTEMPT 1
+
+# class Solution(object):
+#     def reverseString(self, s):
+#         """
+#         :type s: List[str]
+#         :rtype: None Do not return anything, modify s in-place instead.
+#         """
+        
+#         def helper(left, right):
+#             if left >= right:
+#                 return   
+#             s[left], s[right] = s[right], s[left]
+            
+#             helper(left + 1, right - 1)
+        
+#         helper(0, len(s) - 1)     
+        
+        
+        
 class Solution(object):
     def reverseString(self, s):
         """
@@ -33,16 +54,22 @@ class Solution(object):
         :rtype: None Do not return anything, modify s in-place instead.
         """
         
-        def helper(left, right):
-            if left >= right:
-                return   
-            s[left], s[right] = s[right], s[left]
+        if len(s) == 1 or len(s) == 0:
+            return s
+        
+        left = 0
+        right = len(s) - 1
+        
+        def swap(left, right):
             
-            helper(left + 1, right - 1)
-        
-        helper(0, len(s) - 1)     
-        
-        
+            if left >= right:
+                return s
+            
+            s[left], s[right] = s[right], s[left]
+                
+            swap(left + 1, right - 1)
+            
+        swap(left, right)
         
 
 # Input: s = ["h","e","l","l","o"]
