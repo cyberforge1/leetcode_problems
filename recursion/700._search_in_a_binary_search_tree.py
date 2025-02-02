@@ -34,12 +34,37 @@
 #         self.left = left
 #         self.right = right
 
+# class Solution(object):
+#     def searchBST(self, root, val):
+#         if not root or root.val == val:
+#             return root
+
+#         if val < root.val:
+#             return self.searchBST(root.left, val)
+
+#         return self.searchBST(root.right, val)
+
+
+
+### SECOND SOLUTION
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
 class Solution(object):
     def searchBST(self, root, val):
-        if not root or root.val == val:
-            return root
-
-        if val < root.val:
-            return self.searchBST(root.left, val)
-
-        return self.searchBST(root.right, val)
+        def search(node):
+            if not node:
+                return None
+            if node.val == val:
+                return node
+            if val < node.val:
+                return search(node.left)
+            else:
+                return search(node.right)
+        
+        return search(root)
