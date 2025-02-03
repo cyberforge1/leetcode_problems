@@ -161,3 +161,5 @@ class Solution(object):
                     dfs(r, c)  # Start DFS for this island
         
         return num_islands
+
+
