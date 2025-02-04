@@ -45,31 +45,56 @@
         
 #         helper(0, len(s) - 1)     
         
+### SECOND SOLUTION        
+
+# class Solution(object):
+#     def reverseString(self, s):
+#         """
+#         :type s: List[str]
+#         :rtype: None Do not return anything, modify s in-place instead.
+#         """
         
+#         if len(s) == 1 or len(s) == 0:
+#             return s
         
+#         left = 0
+#         right = len(s) - 1
+        
+#         def swap(left, right):
+            
+#             if left >= right:
+#                 return s
+            
+#             s[left], s[right] = s[right], s[left]
+                
+#             swap(left + 1, right - 1)
+            
+#         swap(left, right)
+
+### THIRD SOLUTION
+
 class Solution(object):
     def reverseString(self, s):
         """
         :type s: List[str]
         :rtype: None Do not return anything, modify s in-place instead.
         """
+        left, right = 0, len(s) - 1
         
-        if len(s) == 1 or len(s) == 0:
-            return s
         
-        left = 0
-        right = len(s) - 1
-        
-        def swap(left, right):
-            
-            if left >= right:
-                return s
-            
+        while left < right:
             s[left], s[right] = s[right], s[left]
-                
-            swap(left + 1, right - 1)
+            left += 1
+            right -= 1
             
-        swap(left, right)
+        return s
+
+
+
+
+
+
+
         
 
 # Input: s = ["h","e","l","l","o"]
