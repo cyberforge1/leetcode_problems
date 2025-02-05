@@ -60,7 +60,7 @@
 #         return helper(0)[1]
 
 class Solution(object):
-    def decodeString(self, s):
+    def decodeString(s):
         stack = []  # Stack to keep track of previous string and repeat count
         curr_str = ""  # Current string being built
         num = 0  # Number before '[' to determine repetitions
