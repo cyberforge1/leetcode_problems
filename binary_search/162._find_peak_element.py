@@ -32,13 +32,34 @@
 
 
 class Solution(object):
-    def findPeakElement(self, nums):
+    def findMin(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
+        left, right = 0, len(nums) - 1
+        
+        while left < right:
+            mid = (left + right) // 2
+            
+            if nums[mid] > nums[right]:  
+                left = mid + 1  
+            else:
+                right = mid  
+        
+        return nums[left]
+        
         
         
         
 
+# Input: nums = [1,2,3,1]
+# Output: 2
+
+# Input: nums = [1,2,1,3,5,6,4]
+# Output: 5
+
+print(Solution().findPeakElement(nums = [1,2,3,1]))
+
+# python binary_search/162._find_peak_element.py
 
