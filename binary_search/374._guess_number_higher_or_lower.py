@@ -44,6 +44,17 @@
 #          otherwise return 0
 # def guess(num):
 
+def guess(num):
+    # This function should already be provided in the system.
+    # For testing purposes, assume `pick = 6`.
+    pick = 6
+    if num > pick:
+        return -1
+    elif num < pick:
+        return 1
+    else:
+        return 0
+
 
 class Solution(object):
     def guessNumber(self, n):
