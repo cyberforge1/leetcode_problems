@@ -36,11 +36,10 @@
 # arr is sorted in ascending order.
 # -104 <= arr[i], x <= 104
 
-from bisect import bisect_left
+class Solution:
+    def findClosestElements(self, arr, k, x):
+        from bisect import bisect_left
 
-
-class Solution(object):
-    def findClosestElements(arr, k, x):
         # Find the insertion point using binary search
         left = bisect_left(arr, x)
         left, right = left - 1, left  # Initialize two pointers
@@ -58,3 +57,4 @@ class Solution(object):
             k -= 1
 
         return arr[left + 1:right]
+
